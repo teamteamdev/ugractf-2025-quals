@@ -1,0 +1,23 @@
+[project]
+name = "racelights"
+version = "0.1.0"
+description = ""
+authors = []
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi (>=0.115.9,<1.0.0)",
+    "gunicorn (>=23.0.0,<24.0.0)",
+    "uvicorn (>=0.34.0,<1.0.0)",
+    "jinja2 (>=3.1.5,<4.0.0)",
+    "httpx (>=0.28.1,<1.0.0)",
+    "itsdangerous (>=2.2.0,<3.0.0)"
+]
+
+[project.scripts]
+racelights = "racelights:run"
+racelights-debug = "racelights:debug"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

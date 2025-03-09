@@ -1,0 +1,11 @@
+[package]
+name = "laundromat-server"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ciborium = "0.2.2"
+laundromat-shared = { version = "0.1.0", path = "../laundromat-shared" }
+reqwest = { version = "0.12.12", default-features = false }
+serde = "1.0.218"
+tokio = { version = "1.43.0", features = ["io-util", "macros", "net", "rt-multi-thread"] }

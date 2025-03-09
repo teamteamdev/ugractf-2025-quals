@@ -1,0 +1,33 @@
+category: misc
+points: 100
+title:
+  ru: Кошкоробка
+  en: Catbox
+author: purplesyringa
+description:
+  ru: |
+    <p>
+      На мой любимый сайт с кошками кто-то залил флаг. Разберитесь, в чем тут дело, и накажите
+      невиновных.
+    </p>
+    <p>
+      <em>Добавлено 9 марта в 00:10:</em> Подсказка: Чтобы получить доступ к флагу, обязательно нужно ввести правильный пароль.
+    </p>
+  en: |
+    <p>
+      Someone has uploaded a flag to my favorite cat site. Find out what's going on and put a stop
+      to it.
+    </p>
+    <p>
+      <em>Added on March 9 at 00:10:</em> Hint: To access the flag, you must enter the correct password.
+    </p>
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: em56Ys6bEJhsUFguKOsPEjIE8zgYkSGa
+  rng: "0\\.[1-9]\\d{20}"
+  flag: ugra_no_thoughts_only_meow_meow_[a-z0-9]{12}

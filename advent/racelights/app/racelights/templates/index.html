@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>File a Report</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="/static/index.css" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="left">
+        <h1>File a Report</h1>
+        <p>Select event coordinates, then check the data and submit.</p>
+      </div>
+      <div class="right">
+        <p>Coordinates: <span class="grayed" id="coords">Not selected</span></p>
+        <div class="g-recaptcha" data-sitekey="6LcqWuUqAAAAADQa8S12R7n0psBrJvFl5a90BNYp"></div>
+        <p><button disabled>Submit</button></p>
+      </div>
+    </header>
+    <main></main>
+    <script src="/static/index.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbd0Y0tNkWyn4Epd2uNi6YNkZejKE9wCo&callback=initMap&loading=async&v=weekly">
+  </script>
+  </body>
+</html>

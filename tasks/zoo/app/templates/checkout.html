@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ОФИЦИАЛЬНЫЙ САЙТ ГБУ ГОРОДСКОЙ ЗООПАРК</title>
+    <link rel="stylesheet" href="/{{.Token}}/static/style.css">
+</head>
+
+<body>
+    <h1 class="logo">ГО-РОДСКОЙ ЗООПАРК им. РОБЕРТА ПАЙКОВА</h1>
+    <p><a href="/{{.Token}}">К билетам</a></p>
+    <div class="checkout-container">
+        <h1>Оформление покупки</h1>
+        <div class="user-balance">
+            <p>На счету <strong>{{.Balance}}</strong> ₽. <a href="/{{.Token}}/topup">Пополнить</a></p>
+        </div>
+        <div class="cart-summary">
+            <h2>Корзина</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Билет</th>
+                        <th>Количество</th>
+                        <th>Цена Билета</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .Tickets}}
+                    <tr>
+                        <td>{{.EventName}}</td>
+                        <td>{{.Count}}</td>
+                        <td>{{.Price}} ₽</td>
+                    </tr>
+                    {{end}}
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="3" style="text-align: right;">Всего:</td>
+                        <th>{{.TotalPrice}} ₽</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        {{if ne .TotalPrice 0}}
+        <div class="actions">
+            <form action="" method="post">
+                <button type="submit" {{if gt .TotalPrice .Balance}}disabled{{end}}>Купить</button>
+            </form>
+        </div>
+        {{end}}
+    </div>
+</body>
+
+</html>

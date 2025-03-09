@@ -1,0 +1,9 @@
+20 ICON DISCARDABLE icon.ico
+
+STRINGTABLE
+BEGIN
+    100, "ugra_flag_stub_ccccccccccccccccccccccccccccccccccccccccccc"
+    256, "hidden somewhere"
+END
+
+124 BITMAP DISCARDABLE flag.bmp

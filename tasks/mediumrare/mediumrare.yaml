@@ -1,0 +1,42 @@
+category: web
+points: 250
+title: Medium rare
+author: purplesyringa
+description:
+  ru: |
+    <p>
+      После
+      <a href="https://github.com/teamteamdev/ugractf-2024-school/tree/production/tasks/medium" target="_blank">фиаско на прошлом CTF</a>,
+      когда мы выложили разбор прямо в составе задания, старых разработчиков уволили, наняли новых.
+      Интерфейс сохранили, бекенд переписали с нуля. Теперь подобного повториться не должно.
+    </p>
+    <p>
+      <small>В этой задаче у каждой команды своя база данных.</small>
+    </p>
+    <form method="POST" action="https://mediumrare.{{hostname}}/{{token}}/__reset_db__">
+      <button>Сбросить базу данных</button>
+    </form>
+  en: |
+    <p>
+      After
+      <a href="https://github.com/teamteamdev/ugractf-2024-school/tree/production/tasks/medium" target="_blank">the fiasco on the latest CTF</a>,
+      when we published the write-up together with the problem statement, the old developers were laid off and new ones were hired.
+      Interface remained the same, backend got a full rewrite. This surely won't happen again.
+    </p>
+    <p>
+      <small>Every team has their own database.</small>
+    </p>
+    <form method="POST" action="https://mediumrare.{{hostname}}/{{token}}/__reset_db__">
+      <button>Reset the database</button>
+    </form>
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: Z69uDa2+ejbTsNsu7PBhhodBXl/JHrGXanother
+  writeup_id: "[0-9a-f]{32}"
+  admin_password: "[A-Za-z0-9-_]{43}="
+  flag: ugra_we_should_have_used_wordpress_[a-z0-9]{12}

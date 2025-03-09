@@ -1,0 +1,15 @@
+FROM rust:alpine AS builder
+RUN apk add --no-cache build-base
+WORKDIR /controller
+RUN \
+    --mount=type=bind,source=controller,target=/controller,rw \
+    --mount=type=cache,target=/controller/target,sharing=locked \
+    --mount=type=cache,target=/usr/local/cargo/registry,sharing=locked \
+    cargo build --release && \
+    cp target/release/controller /rust-proxy
+
+FROM imachug/kyzylborda_lib
+WORKDIR /task/controller
+COPY --from=builder /rust-proxy /
+EXPOSE 3252
+CMD ["kyzylborda-quarantine", "unix:/tmp/internal.sock", "internal"]

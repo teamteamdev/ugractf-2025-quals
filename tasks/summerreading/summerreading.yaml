@@ -1,0 +1,26 @@
+category: web
+points: 100
+title:
+  ru: Летнее чтение
+  en: Summer reading
+author: purplesyringa
+description:
+  ru: |
+    <p>
+      Есть две вещи, которые все не читают, но боятся в этом признаться: летнее чтение и
+      лицензионные соглашения. У нас тут та же ситуация.
+    </p>
+  en: |
+    <p>
+      There's two things people don't read but never admit to it: summer reading and licensing
+      agreements. We've got a similar situation here.
+    </p>
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: M+7cXll5mXJTxNlkg1XKITnF75Z1l/gBanother
+  flag: ugra_blindly_accepting_licenses_is_unacceptable_[a-z0-9]{12}

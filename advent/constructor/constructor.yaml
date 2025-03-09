@@ -1,0 +1,37 @@
+category: web
+points: 1
+author: purplesyringa
+title:
+  ru: Конструктор
+  en: Constructor
+sort_key: "03/02"
+description:
+  ru: |
+    <p>
+      АГРОКЕКСТРОЙ ПРЕДСТАВЛЯЕТ
+    </p>
+    <p>
+      КОНСТРУКТОР
+    </p>
+    <p>
+      "ПОСТРОЙ САЙТ СВОИМИ РУКАМИ"
+    </p>
+  en: |
+    <p>
+      AGROKEKSTROY PRESENTS
+    </p>
+    <p>
+      A CONSTRUCTOR
+    </p>
+    <p>
+      "IKEA FOR WEBSITES"
+    </p>
+urls:
+  - https://constructor.{hostname}/
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: app
+  socket: ./app.sock
+  socket_type: http
+flags:
+  - ugra_welcome_to_cyberspace_1rk0upvny4wj

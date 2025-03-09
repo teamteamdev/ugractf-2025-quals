@@ -1,0 +1,15 @@
+category: crypto
+points: 1
+title:
+  ru: Телеграфный перевод
+  en: Wire transfer
+sort_key: "03/05"
+author: purplesyringa
+description:
+  ru: |
+    <p>Мы перехватили телеграмму одного банка. Расшифруйте.</p>
+  en: |
+    <p>We have intercepted a message from a certain bank. Decrypt it.</p>
+flags:
+  - ugra_certified_bank_bank_moment_nxflcsobgx7s
+attachments_path: attachments

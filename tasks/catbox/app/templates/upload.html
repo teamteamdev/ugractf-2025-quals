@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Upload | {{ service_name }}</title>
+		<link rel="stylesheet" type="text/css" href="/static/styles.css">
+	</head>
+	<body>
+		<nav>
+			<a href="../">Back to pic list</a>
+		</nav>
+		<h1>Upload</h1>
+		<form method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="id">
+			<input type="hidden" name="password">
+			<input type="file" name="file"> (no more than 256 KiB)<br>
+			<input type="submit">
+		</form>
+		<script type="text/javascript">
+			var n = BigInt(Math.random() * 1e100).toString(36);
+			{% if service_name == "Catbox" %}
+			document.getElementsByName("id")[0].value = n.substr(0, 32);
+			document.getElementsByName("password")[0].value = n.substr(32);
+			{% else %}
+			document.getElementsByName("id")[0].value = n.substr(32);
+			document.getElementsByName("password")[0].value = n.substr(0, 32);
+			{% endif %}
+		</script>
+	</body>
+</html>

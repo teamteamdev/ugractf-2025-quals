@@ -1,0 +1,15 @@
+category: forensics
+points: 100
+title:
+  ru: наизнанку
+  en: inside out
+author: sylfn
+description:
+  ru: |
+    <p>...или же навыворот?
+  en: |
+    <p>...or outside in?
+generator: ../_scripts/kyzylborda-lib-generator
+secrets:
+  seed: R1QRM88RqfT7l3rZ6owMZ8MOAMj1OwVfanother
+  flag: ugra_windows_resources_are_simple_[a-z0-9]{24}

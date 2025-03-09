@@ -1,0 +1,15 @@
+services:
+  app:
+    build: app
+    environment:
+      - TASK_NAME
+    networks:
+      - isolated
+    user: "${DOCKER_USER}"
+    volumes:
+      - "./app:/app:ro"
+      - "${KYZYLBORDA_TMPDIR}:/tmp"
+      - "./:/task:ro"
+networks:
+  isolated:
+    internal: true

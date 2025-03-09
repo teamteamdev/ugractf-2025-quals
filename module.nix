@@ -1,0 +1,6 @@
+{
+  services.nginx = {
+    commonHttpConfig = ''
+    '';
+  };
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/static/styles.css">
+        <title>CraftCraft</title>
+    </head>
+    <body>
+        <div class="recipe-book-menu">
+            <h2>Recipes</h2>
+
+            <div class="recipes"></div>
+        </div>
+
+        <div class="crafting-menu">
+            <div class="crafting-section">
+                <h2>Crafting</h2>
+
+                <div class="crafting-row">
+                    <div>
+                        <div class="item-row">
+                            <div class="item-cell" data-slot="1"></div>
+                            <div class="item-cell" data-slot="2"></div>
+                            <div class="item-cell" data-slot="3"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-cell" data-slot="4"></div>
+                            <div class="item-cell" data-slot="5"></div>
+                            <div class="item-cell" data-slot="6"></div>
+                        </div>
+                        <div class="item-row">
+                            <div class="item-cell" data-slot="7"></div>
+                            <div class="item-cell" data-slot="8"></div>
+                            <div class="item-cell" data-slot="9"></div>
+                        </div>
+                    </div>
+
+                    <img class="crafting-arrow" src="/static/crafting_arrow.webp" width="48">
+
+                    <div class="item-cell crafting-output"></div>
+                </div>
+            </div>
+
+            <div class="inventory-section">
+                <h2>Inventory</h2>
+
+                <div>
+                    <div class="item-row">
+                        <div class="item-cell" data-slot="10"></div>
+                        <div class="item-cell" data-slot="11"></div>
+                        <div class="item-cell" data-slot="12"></div>
+                        <div class="item-cell" data-slot="13"></div>
+                        <div class="item-cell" data-slot="14"></div>
+                        <div class="item-cell" data-slot="15"></div>
+                        <div class="item-cell" data-slot="16"></div>
+                        <div class="item-cell" data-slot="17"></div>
+                        <div class="item-cell" data-slot="18"></div>
+                    </div>
+                    <div class="item-row">
+                        <div class="item-cell" data-slot="19"></div>
+                        <div class="item-cell" data-slot="20"></div>
+                        <div class="item-cell" data-slot="21"></div>
+                        <div class="item-cell" data-slot="22"></div>
+                        <div class="item-cell" data-slot="23"></div>
+                        <div class="item-cell" data-slot="24"></div>
+                        <div class="item-cell" data-slot="25"></div>
+                        <div class="item-cell" data-slot="26"></div>
+                        <div class="item-cell" data-slot="27"></div>
+                    </div>
+                    <div class="item-row">
+                        <div class="item-cell" data-slot="28"></div>
+                        <div class="item-cell" data-slot="29"></div>
+                        <div class="item-cell" data-slot="30"></div>
+                        <div class="item-cell" data-slot="31"></div>
+                        <div class="item-cell" data-slot="32"></div>
+                        <div class="item-cell" data-slot="33"></div>
+                        <div class="item-cell" data-slot="34"></div>
+                        <div class="item-cell" data-slot="35"></div>
+                        <div class="item-cell" data-slot="36"></div>
+                    </div>
+                </div>
+
+                <div class="inventory-bottom">
+                    <div class="item-row">
+                        <div class="item-cell" data-slot="37"></div>
+                        <div class="item-cell" data-slot="38"></div>
+                        <div class="item-cell" data-slot="39"></div>
+                        <div class="item-cell" data-slot="40"></div>
+                        <div class="item-cell" data-slot="41"></div>
+                        <div class="item-cell" data-slot="42"></div>
+                        <div class="item-cell" data-slot="43"></div>
+                        <div class="item-cell" data-slot="44"></div>
+                        <div class="item-cell" data-slot="45"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="environment-menu">
+            <div class="environment-section">
+                <h2>Environment</h2>
+
+                <div class="environment">
+                    <div class="item-cell"><div class="item" data-item="log" data-amount="&infin;"><img src="/static/items/log.webp"></div></div>
+                    <div class="item-cell"><div class="item" data-item="dirt" data-amount="&infin;"><img src="/static/items/dirt.webp"></div></div>
+                    <div class="item-cell"><div class="item" data-item="sand" data-amount="&infin;"><img src="/static/items/sand.webp"></div></div>
+                    <div class="item-cell"><div class="item" data-item="water" data-amount="&infin;"><img src="/static/items/water.webp"></div></div>
+                    <div class="item-cell"><div class="item" data-item="lava" data-amount="&infin;"><img src="/static/items/lava.webp"></div></div>
+                </div>
+            </div>
+
+            <div class="trash-section">
+                <h2>Trash bin</h2>
+
+                <div class="environment">
+                    <div class="item-cell"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="advancements"></div>
+
+        <div class="trial" style="display: none;">
+            <div class="trial-message">
+                <h2>Demo time's up!</h2>
+                <a>Reset the game</a>
+            </div>
+        </div>
+
+        <div class="cursor">
+            <div class="cursor-slot" data-slot="0"></div>
+            <div class="tooltip" style="display: none;"></div>
+        </div>
+
+        <script type="text/javascript" src="/static/client.js"></script>
+    </body>
+</html>

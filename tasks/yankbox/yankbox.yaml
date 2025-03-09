@@ -1,0 +1,32 @@
+category: ctb
+points: 100
+title: Yankbox
+author: sylfn
+description:
+  ru: |
+    <p>Как Pastebin, только проще</p>
+    <p><small>Сервер этой задачи запущен в отдельном контейнере для вашей команды.</small></p>
+    <form method="POST">
+        <button>Перезапустить контейнер</button>
+    </form>
+    <script>
+        Array.from(document.querySelectorAll("form")).slice(-1)[0].action = location.protocol + "//yankbox." + location.host + "/__internal__/reboot_container/{{token}}?" + location.href;
+    </script>
+  en: |
+    <p>Like Pastebin, but easier</p>
+    <p><small>The server of this task is running in a container per team.</small></p>
+    <form method="POST">
+        <button>Restart container</button>
+    </form>
+    <script>
+        Array.from(document.querySelectorAll("form")).slice(-1)[0].action = location.protocol + "//yankbox." + location.host + "/__internal__/reboot_container/{{token}}/?" + location.href;
+    </script>
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: ../_scripts/kyzylborda-lib-quarantine-daemon Dockerfile.controller app
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: mj5oIQ6r+HZmA3I6R/sYeinQPwT+nKAy
+  flag: ugra_thats_why_we_dont_use_php_[a-z0-9]{12}

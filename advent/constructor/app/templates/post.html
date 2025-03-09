@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{{ title }} | АГРОКЕКСТРОЙ</title>
+
+		<link rel="stylesheet" type="text/css" href="/static/fonts.css">
+		<link rel="stylesheet" type="text/css" href="/static/styles.css">
+	</head>
+	<body>
+		<!-- Photo by Mihail Tregubov on Unsplash -->
+		<header>
+			<img src="/static/logo.jpg">
+
+			<div class="site-title">АгроКекСтрой</div>
+			<div class="site-subtitle" id="site_subtitle">В сфере киберстроительства с 1337 года</div>
+
+			<nav>
+				<a href="/">Главная</a>
+				<a href="/ОЧЕРКИ/2/">О нас</a>
+				<a href="https://vk.com/agrokekstroj" target="_blank">Наш ВК</a>
+				<a href="http://agrokek.site" target="_blank">Старый сайт</a>
+			</nav>
+		</header>
+
+		<main>
+			<h1>{{ title }}</h1>
+
+			{{ content|safe }}
+		</main>
+
+		<script>
+			var text = document.getElementById("site_subtitle").innerHTML;
+			document.getElementById("site_subtitle").innerHTML = "";
+			for (var i = 0; i < text.length; i++) {
+				var node = document.createElement("SPAN");
+				node.innerHTML = text[i];
+				document.getElementById("site_subtitle").appendChild(node);
+				(function (node, i) {
+					setInterval(function () {
+						node.style.top = Math.sin(i + Date.now() / 300) * 4 + "px";
+					}, 100);
+				})(node, i);
+			}
+		</script>
+	</body>
+</html>

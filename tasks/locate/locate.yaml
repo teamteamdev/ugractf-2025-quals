@@ -1,0 +1,29 @@
+category: osint
+points: 200
+title: /locate
+author: purplesyringa
+description:
+  ru: |
+    <p>
+      Найдите точные координаты <strong>блока</strong>, с которого сделана данная фотокарточка Северной Каролины.
+    </p>
+    <p>
+      Обратите внимание, что у вашей команды есть всего 7 попыток назвать координаты.
+    </p>
+  en: |
+    <p>
+      Find the exact coordiantes of the <strong>block</strong> that this picture of North Carolina was taken from.
+    </p>
+    <p>
+      Keep in mind that your team only has 7 attempts to call the coordinates.
+    </p>
+attachments_path: attachments
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: pUq/A799ZwKXVXr/YYkyNIzwIjaPtAVo
+  flag: ugra_someone_should_make_a_tool_for_this_[a-z0-9]{12}

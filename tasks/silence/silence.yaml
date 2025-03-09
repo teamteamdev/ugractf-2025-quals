@@ -1,0 +1,21 @@
+category: ppc
+points: 200
+title:
+  ru: тишина
+  en: silence
+author: sylfn
+description:
+  ru: |
+    <p><em>звук сверчков</em></p>
+  en: |
+    <p><em>crickets</em></p>
+bullets:
+  - <code>nc {{hostname}} 3252</code>
+  - "Token: <code>{{token}}</code>"
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: ../_scripts/kyzylborda-lib-quarantine-daemon Dockerfile.controller app
+  cwd: .
+secrets:
+  seed: 0ttsR39JrDSb5FsSRNZjT87sjy5MJ3R2
+  flag: ugra_can_you_hear_me_i_am_in_the_basement_[a-z0-9]{24}

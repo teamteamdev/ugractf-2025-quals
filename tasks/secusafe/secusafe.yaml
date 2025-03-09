@@ -1,0 +1,38 @@
+category: reverse
+points: 300
+title: SecuSafe
+author: rozetkinrobot
+description:
+  ru: |
+    <p>
+      Свою коммуникацию мы шифруем только инструментами, до которых не добрались спецслужбы. А до
+      чего они точно добраться не успели? Правильно: до приложения в самом низу поиска в Google
+      Play.
+    </p>
+    <p>
+      Всё бы хорошо, но теперь приложение обновилось, и старые данные перестали расшифровываться.
+      Всё, что есть и что мы помним &mdash; во вложениях. Поможете нам вернуть доступ к флагам?
+    </p>
+    <p>
+      <em>Обновлено 8 марта в 18:33:</em> стоимость увеличена с 250 до 300.
+    </p>
+  en: |
+    <p>
+      We always encrypt our communications with the applications that intelligence services likely
+      haven't cracked. And what are they? That's right: the programs at the very bottom of Google
+      Play search results.
+    </p>
+    <p>
+      Unfortunately, we lost access to our data due to breaking changes in a recent update. We have
+      attached everything we think might be helpful. Can you help us get our flags back?
+    </p>
+    <p>
+      <em>Updated on March 8 at 18:33:</em> awarded points changed from 250 to 300.
+    </p>
+attachments_path: attachments
+bullets:
+  - "Password: 1234567890"
+generator: ../_scripts/kyzylborda-lib-generator
+secrets:
+  seed: PWe61J5LfKVZ51qRYY7GSXbrhKTKNp5A
+  flag: ugra_hey_this_is_my_secret_maybe_i_shall_use_bitwarden_instead_[a-z0-9]{12}

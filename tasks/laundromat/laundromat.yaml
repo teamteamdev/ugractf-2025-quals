@@ -1,0 +1,31 @@
+category: reverse
+points: 400
+title:
+  ru: Прачечная
+  en: Laundromat
+author: purplesyringa
+description:
+  ru: |
+    <p>Ничего незаконного, просто деньги грязные.</p>
+    <p>
+      <em>Добавлено 8 марта в 23:55:</em> Если при запуске приложения вы видите пустое окно, вы
+      можете обойти баг рендеринга, установив переменную окружения
+      <code>WEBKIT_DISABLE_COMPOSITING_MODE=1</code>.
+    </p>
+  en: |
+    <p>Nothing illegal, the money is just dirty.</p>
+    <p>
+      <em>Added on March 8 at 23:55:</em> If the application shows an empty window, you can
+      workaround the rendering bug by setting the environment variable
+      <code>WEBKIT_DISABLE_COMPOSITING_MODE=1</code>.
+    </p>
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: .
+  socket: ./server.sock
+  socket_type: tcp
+  tcp_port: 2255
+secrets:
+  seed: wtdTm/iPOJAt2Iu+3Ywfmac9YB/DVYry
+  flag: ugra_keep_your_hands_clean_[a-z0-9]{12}

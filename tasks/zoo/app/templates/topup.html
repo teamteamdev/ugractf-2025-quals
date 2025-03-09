@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ОФИЦИАЛЬНЫЙ САЙТ ГБУ ГОРОДСКОЙ ЗООПАРК</title>
+    <link rel="stylesheet" href="/{{.Token}}/static/style.css">
+    <style>
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="logo">ГО-РОДСКОЙ ЗООПАРК им. РОБЕРТА ПАЙКОВА</h1>
+    <p><a href="/{{.Token}}">К билетам</a></p>
+
+    <h2>Пополнение баланса</h2>
+
+    <p>В связи с трудностями в работе обслуживания банковских карт, в нашем зоопарке вы можете выбрать платёжный шлюз для пополнения баланса вашей картой.</p>
+
+    <button id="localCardBtn" class="button">Российская карта</button>
+    <button id="foreignCardBtn" class="button">Зарубежная карта</button>
+
+    <script>
+        document.getElementById('localCardBtn').addEventListener('click', function () {
+            // Simulate checking availability
+            if (!isLocalCardAvailable()) {
+                alert('Данный способ пополнения временно недоступен.');
+            } else {
+                // Proceed with the local card top-up process
+            }
+        });
+
+        document.getElementById('foreignCardBtn').addEventListener('click', function () {
+            // Simulate checking availability
+            if (!isForeignCardAvailable()) {
+                alert('Пополнение зарубежными картами временно недоступно.');
+            } else {
+                // Proceed with the foreign card top-up process
+            }
+        });
+
+        function isLocalCardAvailable() {
+            // Placeholder for actual availability logic
+            return false; // Assume unavailable for demonstration
+        }
+
+        function isForeignCardAvailable() {
+            // Placeholder for actual availability logic
+            return false; // Assume available for demonstration
+        }
+    </script>
+
+</body>
+
+</html>

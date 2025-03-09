@@ -1,0 +1,35 @@
+category: ppc
+points: 300
+title: CraftCraft
+author: purplesyringa
+description:
+  ru:
+    <p>
+      Мне одно яйцо дракона, пожалуйста.
+    </p>
+    <p>
+      Вы можете поднять копию сайта локально, скачав архив с исходниками, запустив
+      <code>docker build -t craftcraft . && docker run -p 3001:3001 craftcraft</code> и открыв ссылку
+      <a href="http://127.0.0.1:3001/{{token}}/"><code>http://127.0.0.1:3001/{{token}}/</code></a>.
+      Это ускорит отладку ваших решений, убрав задержку сети, а также уменьшит нагрузку на сервер.
+    </p>
+  en:
+    <p>
+      One dragon egg, please.
+    </p>
+    <p>
+      You can build a copy of the service locally by running
+      <code>docker build -t craftcraft . && docker run -p 3001:3001 craftcraft</code> and opening
+      <a href="http://127.0.0.1:3001/{{token}}/"><code>http://127.0.0.1:3001/{{token}}/</code></a>.
+      This will speed up debugging your solutions and will reduce server load.
+    </p>
+attachments_path: attachments
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: C8+qhTX5/mLLDL7s5jmLq6G+7rzo84yh
+  flag: ugra_how_did_we_get_here_[a-z0-9]{12}

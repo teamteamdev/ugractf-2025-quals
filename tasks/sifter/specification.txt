@@ -1,0 +1,44 @@
+Four 8-bit registers: Ra (0), Rb (1), Rc (2), Rd (3)
+
+Flags: ZSCO
+
+Conditions:
+- always (0)
+- less (1)
+- below or equal (2)
+- less or equal (3)
+- Z flag = equal (4)
+- S flag (5)
+- C flag = below (6)
+- O flag (7)
+
+mov d, s: 0000ssdd
+add d, s: 0001ssdd
+xor d, s: 0010ssdd
+and d, s: 0011ssdd
+ldr d, s: 0100ssdd
+str d, s: 0101ssdd
+cmp a, b: 0110aabb
+or  d, s: 0111ssdd
+
+imm d, i: 100000dd iiiiiiii
+neg d:    100001dd
+com d:    100010dd
+shl d:    100011dd iiiiiiii
+
+in  d:    100100dd
+out s:    100101ss
+tst s:    100110ss
+rbt d:    100111dd
+
+shr d:    101000dd iiiiiiii
+sar d:    101001dd iiiiiiii
+rol d:    101010dd iiiiiiii
+ror d:    101011dd iiiiiiii
+
+jcc i:    1011Cccc iiiiiiii  -- C inverts the result
+
+inc d:    110000dd
+dec d:    110001dd
+undef:    11??????
+hlt:      11111111

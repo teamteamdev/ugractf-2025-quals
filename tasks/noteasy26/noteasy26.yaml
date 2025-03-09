@@ -1,0 +1,19 @@
+category: crypto
+points: 100
+title:
+  ru: noteasy26
+  en: noteasy26
+author: enhydra
+description:
+  ru: |
+    <p>
+      Легендарная серия возвращается.
+    </p>
+  en: |
+    <p>
+      This is a comeback of the legendary series.
+    </p>
+generator: ../_scripts/kyzylborda-lib-generator
+secrets:
+  seed: gIHwuLi4uPXsuIC4uUS4uLi5MfAowM
+  flag: ugra_hypoxemic_adversarial_internationalization_quasijaw_backfires_[a-z]{16}

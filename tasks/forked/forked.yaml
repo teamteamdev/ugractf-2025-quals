@@ -1,0 +1,23 @@
+category: admin
+points: 150
+title: forked
+author: sylfn
+description:
+  ru: |
+    <p>Дофоркались. Теперь нельзя.
+  en: |
+    <p>It is indeed forked.
+bullets:
+  - "<code>nc forked.{{hostname}} 3254</code>"
+  - "Token: <code>{{token}}</code>"
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: ../_scripts/kyzylborda-lib-quarantine-daemon Dockerfile.controller app
+  cwd: .
+  socket: ./external.sock
+  socket_type: tcp
+  tcp_port: 3254
+secrets:
+  seed: uhreq21eSDLq08A6+U3ALIl7eg9O8OIM
+  flag: ugra_you_really_can_live_without_fork_[a-z0-9]{12}
+  flag-path: /flag-[a-zA-Z0-9]{24}\.txt

@@ -1,0 +1,28 @@
+[package]
+name = "laundromat-client"
+version = "0.1.0"
+authors = ["Alisa Sireneva <me@purplesyringa.moe>"]
+edition = "2021"
+
+[dependencies]
+ciborium = "0.2.2"
+dioxus = "0.6.0"
+dioxus-core-types = "0.6.2"
+http = "1.2.0"
+laundromat-shared = { path = "../laundromat-shared" }
+rustix = { version = "0.38.44", features = ["process"] }
+rustls = "0.23.23"
+rustls-pki-types = "1.11.0"
+serde = "1.0.218"
+signal-hook = "0.3.17"
+tao = "0.32.7"
+tokio = { version = "1.43.0", features = ["time"] }
+webpki-roots = "0.26.8"
+zip = { version = "2.2.3", optional = true }
+
+[features]
+default = ["desktop"]
+web = ["dioxus/web"]
+desktop = ["dioxus/desktop"]
+mobile = ["dioxus/mobile"]
+bundle = ["dep:zip"]

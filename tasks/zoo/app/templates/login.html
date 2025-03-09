@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ОФИЦИАЛЬНЫЙ САЙТ ГБУ ГОРОДСКОЙ ЗООПАРК</title>
+    <link rel="stylesheet" href="/{{.Token}}/static/style.css">
+</head>
+<body>
+    <h1 class="logo">ГО-РОДСКОЙ ЗООПАРК им. РОБЕРТА ПАЙКОВА</h1>
+    <p><a href="/{{.Token}}/register">Зарегистрироваться</a>.</p>
+    <h2>Войти</h2>
+    <form action="" method="post">
+        <div>
+            <label for="username">Ваш логин:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Войти</button>
+    </form>
+</body>
+</html>

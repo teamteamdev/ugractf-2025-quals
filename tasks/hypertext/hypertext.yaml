@@ -1,0 +1,27 @@
+category: ctb
+points: 200
+title: hypertext
+author: sylfn
+description:
+  ru: |
+    <p>HTTP &mdash; до боли простой протокол, и простенькие сервера пишутся очень легко. А безопасны ли они?
+    <p>
+      <em>Добавлено 9 марта в 00:10:</em> Подсказка: <code>[</code>
+    </p>
+  en: |
+    <p>Implementing HTTP is a walk in the park, and simple servers are pretty straightforward. But what about their safety?
+    <p>
+      <em>Added on March 9 at 00:10:</em> Hint: <code>[</code>
+    </p>
+urls:
+  - 'http://hypertext.{hostname}:3253/{token}'
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: ../_scripts/kyzylborda-lib-quarantine-daemon Dockerfile.controller app
+  cwd: .
+  socket: ./external.sock
+  socket_type: tcp
+  tcp_port: 3253
+secrets:
+  seed: XBM0J4CiJxpNih/qmOmHzVG4g8rFcFbP
+  flag: ugra_inetd_and_bash_are_so_powerful_[a-z0-9]{12}

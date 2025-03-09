@@ -1,0 +1,16 @@
+services:
+  controller:
+    build:
+      dockerfile: Dockerfile.controller
+    environment:
+      - TASK_NAME
+    networks:
+      - isolated
+    user: "${DOCKER_USER}"
+    volumes:
+      - "${KYZYLBORDA_TMPDIR}:/tmp"
+      - "./:/task:ro"
+
+networks:
+  isolated:
+    internal: true

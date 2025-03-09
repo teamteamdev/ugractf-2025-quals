@@ -1,0 +1,26 @@
+category: stegano
+points: 100
+title:
+  ru: Последний шанс
+  en: The Last Chance
+author: sylfn
+description:
+  ru: |-
+    <p>&mdash; Ну вот я и дома. Наконец-то! Тяжелый выдался денёк...
+    <p>Я решил немного отдохнуть. Всё-таки сломанный лифт &mdash; это не шутки. «И что только этот IF значил?» &mdash; проскочило в моих мыслях.
+    <p>&mdash; Я еле держусь... Надо бы зайти и там уже расслабляться.
+    <p>Из кармана я достал от квартиры ключ, и стал открывать дверь.
+    <p>&mdash; Экая неприятность! Кто-то обчистил мою квартиру! Ну хоть самое главное &mdash; мой коврик настенный так и висит...
+    <p><em>Чем же так ценно это разукрашенное полотно?
+  # честно скажу, я в этой задаче руками исправляла png-шку ковра и тоже выдохлась немного. Повезло, что хоть квартиру не обчистили)
+  en: |-
+    <p>&mdash; Well, I'm home. Finally! It's been a long day...
+    <p>I decided to take a little rest. Broken elevator ain't joke, you know. “And what did that IF mean?” popped into my head.
+    <p>&mdash; I can barely cope... Shoulda enter my apt and unwind there.
+    <p>I pulled the key out of my pocket and opened the door.
+    <p>&mdash; Caramba! Someone cleaned my dwellers out! Well, at least the most precious thing, my carpet, still hangs on the wall.
+    <p><em>Why is this canvas so valuable to us?
+generator: ../_scripts/kyzylborda-lib-generator
+secrets:
+  seed: humO70PVqhhbnrmGiUaldeIWj2hBmnAE
+  flag: ugra_eepy_thoughts_[A-Z0-9]{9}

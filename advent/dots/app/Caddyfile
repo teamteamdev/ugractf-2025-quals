@@ -1,0 +1,6 @@
+http://
+
+bind unix//tmp/app.sock
+log
+root * /app/www
+file_server

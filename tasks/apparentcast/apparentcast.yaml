@@ -1,0 +1,19 @@
+category: forensics
+points: 150
+title:
+  ru: Вещает, видимо
+  en: Casts, apparently
+author: enhydra
+description:
+  ru: |
+    <p>
+      Мало нам <a href="https://ru.wikipedia.org/wiki/Номерная_радиостанция">номерных радиостанций</a>, стали появляться ещё и буквенные.
+    </p>
+  en: |
+    <p>
+      As if <a href="https://en.wikipedia.org/wiki/Numbers_station">number stations</a> were not enough, now there are also ones with letters.
+    </p>
+generator: ../_scripts/kyzylborda-lib-generator
+secrets:
+  seed: SBlYSA2NSA3MiA5NyA5ZCA5ZSA3OSAgNWU
+  flag: ugra_abrupt_and_furious_yet_braindead_[a-z0-9]{13}

@@ -1,0 +1,47 @@
+category: crypto
+points: 300
+title:
+  ru: Жужелица II
+  en: Zhuzhelitsa II
+author: purplesyringa
+description:
+  ru: |
+    <p>
+      Банк Банк запустил криптовалюту, которая перевернет мир! Во-первых, из-за отсутствия
+      финансирования блокчейн оптимизировали до базы данных. Во-вторых, криптосистему RSA, уязвимую
+      к воистине непредотвратимым атакам, заменили на отечественную криптосистему Жужелица.
+      В-третьих, за ББКоины можно покупать флаги. Публичная бета уже запущена!
+    </p>
+    <p>
+      Мы успели незаметно сделать фотографию на презентации BBCoin.
+    </p>
+    <p>
+      Взломайте аккаунт и купите флаг.
+    </p>
+  en: |
+    <p>
+      Bank Bank has launched a cryptocurrency that'll shock the world! Due to funding issues, it
+      uses an efficient centralized database instead of the blockchain. Due to RSA being
+      irredeemably suspectible to cryptanalysis, the Zhuzhelitsa cryptosystem is used instead.
+      Finally, BBCoins can be spent to buy flag. The public beta is open!
+    </p>
+    <p>
+      We've sneakily taken a photo at the BBCoin presentation.
+    </p>
+    <p>
+      Crack the account and buy the flag.
+    </p>
+urls:
+  - https://zhuzhelitsa.{hostname}/
+bullets:
+  - "API key: <code>{{token}}</code>"
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: m8X80dP+161L5dVV77IpXqsurcu+hZW7
+  address2: "[A-Za-z0-9]{22}"
+  flag2: ugra_third_times_a_charm_[a-z0-9]{12}

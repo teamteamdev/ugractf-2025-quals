@@ -1,0 +1,52 @@
+html {
+	font-family: sans-serif;
+	font-size: 16px;
+}
+
+body {
+	margin: 0 auto;
+	max-width: 800px;
+}
+
+header {
+	background-image: url(/static/background.jpg);
+	background-position: center;
+	background-size: cover;
+	padding: 16px 32px 0;
+}
+
+.site-title {
+	font-family: "Monomakh", serif;
+	font-size: 5rem;
+	color: #ff2020;
+	margin-bottom: 8px;
+}
+
+.site-subtitle {
+	font-size: 1.5rem;
+	text-shadow: 2px 2px 4px #ff2020;
+	color: #ffffff;
+	margin-bottom: 32px;
+}
+
+.site-subtitle span {
+	position: relative;
+}
+
+header img {
+	float: right;
+}
+
+nav a {
+	display: inline-block;
+	margin-right: 16px;
+	padding: 8px 12px;
+	background-color: #e02020;
+	color: #ffffff;
+	border-radius: 8px 8px 0 0;
+}
+
+h1 {
+	font-family: "Monomakh", serif;
+	font-size: 2rem;
+}

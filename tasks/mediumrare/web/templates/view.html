@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{{ title }}</title>
+
+		<link rel="stylesheet" type="text/css" href="/static/fonts.css">
+		<link rel="stylesheet" type="text/css" href="/static/editorjs.css">
+		<style type="text/css">
+			main {
+				margin: 32px auto;
+				max-width: 650px;
+				font-family: Roboto, sans-serif;
+				font-size: 16px;
+			}
+
+			h1 {
+				font-family: inherit;
+				font-size: 2em;
+				font-weight: normal;
+			}
+
+			.ce-paid-content-delimiter {
+				line-height: 1.6em;
+				width: 100%;
+				text-align: center;
+			}
+
+			.ce-paid-content-delimiter::before {
+				content: "🔒 Продолжение статьи доступно только по платной подписке. Свяжитесь с автором для получения доступа.";
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h1>{{ title }}</h1>
+
+			<article>
+				{{ content|safe }}
+			</article>
+		</main>
+	</body>
+</html>

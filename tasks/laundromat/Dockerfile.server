@@ -1,0 +1,15 @@
+FROM rust:alpine AS builder
+RUN apk add --no-cache build-base
+WORKDIR /app/laundromat-server
+RUN \
+	--mount=type=bind,source=laundromat,target=/app,rw \
+	--mount=type=cache,target=/target,sharing=locked \
+	--mount=type=cache,target=/usr/local/cargo/registry,sharing=locked \
+	ln -sf /target /app/target && \
+	cargo build --release && \
+	cp /target/release/laundromat-server /laundromat-server
+
+FROM imachug/kyzylborda_lib
+WORKDIR /task
+COPY --from=builder /laundromat-server /laundromat-server
+CMD ["kyzylborda-quarantine", "127.0.0.1:54327", "server_wrapper"]

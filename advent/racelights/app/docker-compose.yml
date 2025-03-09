@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  racelights:
+    build: "."
+    user: "${DOCKER_USER}"
+    volumes:
+      - "${KYZYLBORDA_TMPDIR}:/tmp"
+      - "${STATEDIR}:/state"
+    environment:
+      - "SECRET_KEY=vC9wBD1dgGweCyVsqDX4SQuf4nNOwCqo"
+      - "STATE_PATH=/state"

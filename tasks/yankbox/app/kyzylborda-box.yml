@@ -1,0 +1,5 @@
+volumes:
+  - ./html:/var/www/html:ro
+socket: 127.0.0.1:8080
+healthcheck:
+  request: http://127.0.0.1:8080/fpm-ping

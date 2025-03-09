@@ -1,0 +1,4 @@
+FROM imachug/kyzylborda_lib
+RUN pip install quart uvicorn
+WORKDIR /app
+CMD ["uvicorn", "--uds", "/tmp/app.sock", "--workers", "1", "server:app"]

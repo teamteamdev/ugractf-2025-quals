@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beardbox: answer check for {{ token }}</title>
+    <style>
+        :root {
+            --color-blue: #75aadb;
+            --color-light: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-light) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: var(--color-blue);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px var(--shadow-color);
+        }
+
+        .coordinate-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .coordinate-inputs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .coordinate-inputs input {
+            flex: 1;
+            min-width: 0; /* Prevents input from overflowing */
+        }
+
+        @media (max-width: 480px) {
+            .coordinate-inputs {
+                flex-direction: column;
+            }
+        }
+
+        input {
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: 2px solid var(--color-blue);
+            border-radius: 10px;
+            background: var(--color-light);
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(117, 170, 219, 0.3);
+            transform: translateY(-2px);
+        }
+
+        button {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: var(--color-blue);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background: #5890c7;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .no-attempts {
+            font-size: 1.5rem;
+            color: #666;
+            padding: 2rem;
+        }
+
+        .result-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--color-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .result-container img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+        }
+
+        .attribution {
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .flag {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(117, 170, 219, 0.1);
+            border-radius: 10px;
+            font-size: 1.2rem;
+            color: var(--color-blue);
+        }
+
+        .attempts-circles {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .attempt-circle {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--color-blue);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .attempt-circle.filled {
+            background-color: var(--color-blue);
+        }
+
+        .attempt-circle.empty {
+            background-color: transparent;
+        }
+
+        .warning-message {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            line-height: 1.4;
+        }
+
+        .warning-message p {
+            margin: 0.5em 0;
+        }
+    </style>
+</head>
+<body>
+    {% if attempts > 0 %}
+        <div class="container">
+            <h1>Enter coordinates</h1>
+            <form action="post" method="post" class="coordinate-form">
+                <div class="coordinate-inputs">
+                    <input type="text" name="lat" placeholder="Latitude" required>
+                    <input type="text" name="lon" placeholder="Longitude" required>
+                </div>
+                <button type="submit">Check</button>
+            </form>
+            <div class="attempts-circles">
+                {% for i in range(max_attempts) %}
+                    <div class="attempt-circle {% if i < attempts %}filled{% else %}empty{% endif %}"></div>
+                {% endfor %}
+            </div>
+            <div class="warning-message">
+                <p>Accuracy within 1 km is acceptable.</p>
+                <p>Attempts are spent irreversibly. Spending all attempts without finding the correct location will make this challenge unsolvable.</p>
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="no-attempts">
+                No more attempts.
+            </div>
+        </div>
+    {% endif %}
+
+    {% if flag %}
+        <div class="result-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Fiesta_popular_en_Colalao_del_Valle_Tucum%C3%A1n.JPG" alt="Location Image">
+            <div class="attribution">by CarlosA.Barrio, Wikimedia Commons</div>
+            <div class="flag">
+                {{ flag }}
+            </div>
+        </div>
+    {% endif %}
+
+    <script>
+        // Add smooth transitions when form is submitted
+        document.querySelector('form')?.addEventListener('submit', function(e) {
+            this.style.opacity = '0.5';
+            this.style.transform = 'scale(0.95)';
+        });
+
+        // Add input validation and formatting
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                this.value = this.value.replace(/[^\d.-]/g, '');
+            });
+        });
+    </script>
+</body>
+</html>

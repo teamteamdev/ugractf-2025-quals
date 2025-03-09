@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+
+TARGET=../target/laundromat-build
+mkdir -p $TARGET
+
+rm $TARGET/assets.zip || true
+zip -r $TARGET/assets.zip assets
+
+export ASSETS_ZIP="$(realpath "$TARGET/assets.zip")"
+
+dx build --release --features bundle --skip-assets

@@ -1,0 +1,33 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-image: linear-gradient(to bottom, #808080, #c0c0c0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-roboto);
+}
+
+main {
+  background-color: #d0d0d0;
+  padding: 24px 16px;
+}
+
+h2 {
+  margin: 0;
+}
+
+textarea {
+  width: 580px;
+  height: 320px;
+  resize: none;
+  font-family: var(--font-geist-mono);
+  font-size: 12px;
+  background-color: #606060;
+  color: #f0f0f0;
+  border: none;
+  padding: 8px;
+}

@@ -1,0 +1,34 @@
+category: web
+points: 100
+title: 
+  ru: Санэпидемстанция
+  en: Pest Control
+author: baksist
+description:
+  ru: |
+    <p>ААА! У нас тараканы по офису бегают, срочно вызывайте дезинсектора!</p>
+    <p><small>Сервер этой задачи запущен в отдельном контейнере для вашей команды.</small></p>
+    <form method="POST">
+        <button>Перезапустить контейнер</button>
+    </form>
+    <script>
+        Array.from(document.querySelectorAll("form")).slice(-1)[0].action = location.protocol + "//pestcontrol." + location.host + "/__internal__/reboot_container/{{token}}?" + location.href;
+    </script>
+  en: |
+    <p>AAAH! There are cockroaches running around the office, call an exterminator ASAP!</p>
+    <p><small>The server of this task is running in a container per team.</small></p>
+    <form method="POST">
+        <button>Restart container</button>
+    </form>
+    <script>
+        Array.from(document.querySelectorAll("form")).slice(-1)[0].action = location.protocol + "//pestcontrol." + location.host + "/__internal__/reboot_container/{{token}}/?" + location.href;
+    </script>
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: ../_scripts/kyzylborda-lib-quarantine-daemon Dockerfile.controller app
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: ZWFlZDYwMGYtZTcyOC00M2I4LWFmMmQt
+  flag: ugra_my_blade_is_sharp_but_not_sanitized_[a-z0-9]{12}

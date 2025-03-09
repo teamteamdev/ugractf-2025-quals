@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Poster</title>
+
+		<link rel="stylesheet" type="text/css" href="/static/fonts.css">
+		<style type="text/css">
+			main {
+				margin: 32px auto;
+				max-width: 650px;
+				font-family: Roboto, sans-serif;
+				font-size: 16px;
+			}
+
+			h1 {
+				font-family: inherit;
+				font-size: 2em;
+				font-weight: normal;
+			}
+
+			h2 a {
+				color: inherit;
+				font-weight: normal;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h1>Последние статьи</h1>
+
+			<a href="new">Хотите написать свою?</a>
+
+			{% for article in articles %}
+				<h2><a href="{{ article.id }}/">{{ article.title }}</a></h2>
+			{% endfor %}
+		</main>
+	</body>
+</html>

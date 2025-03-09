@@ -1,0 +1,4 @@
+FROM imachug/kyzylborda_lib:advent
+RUN pip install pillow
+WORKDIR /task
+ENTRYPOINT ["kyzylborda-generate", "generator"]

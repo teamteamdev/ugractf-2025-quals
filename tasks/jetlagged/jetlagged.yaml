@@ -1,0 +1,31 @@
+category: osint
+points: 100
+title:
+  ru: Но обещал вернуться
+  en: Is the limit
+author: enhydra
+description:
+  ru: |
+    <p>
+      Друг прислал эту фотографию, даже не подозревая, что по ней можно вычислить, где конкретно он в тот момент стоял. Разоблачите его.
+    </p>
+    <p>
+      Примечание: вашей команде доступно только 10 попыток ввода координат.
+    </p>
+  en: |
+    <p>
+      A friend of mine sent me this photo, not realizing that it could reveal where he was standing at that moment. Go impress him.
+    </p>
+    <p>
+      Keep in mind that your team only has 10 attempts to provide the coordinates.
+    </p>
+attachments_path: attachments
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: tCMN6io1q9QgekufljYsdq61C01C
+  flag: ugra_how_are_you_feeling_[a-z0-9]{14}

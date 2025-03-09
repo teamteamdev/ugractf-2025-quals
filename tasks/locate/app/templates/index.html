@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>/locate</title>
+    </head>
+    <body>
+        <form action="submit" method="POST">
+            <p>
+                Enter coordinates:
+            </p>
+            <p>
+                <label for="x">X: </label><input type="number" name="x" id="x">
+            </p>
+            <p>
+                <label for="z">Z: </label><input type="number" name="z" id="z">
+            </p>
+            <p>
+                <input type="submit">
+            </p>
+            <p>
+                You have <b class="attempts-left">{{ attempts_left }}</b> attempt(s) left.
+            </p>
+            {% if flag %}
+                <p>
+                    You have already submitted the correct coordinates. Your flag is {{ flag }}.
+                </p>
+            {% endif %}
+        </form>
+
+        <script type="text/javascript">
+            setInterval(async () => {
+                document.querySelector(".attempts-left").textContent = await (await fetch("attempts_left")).text();
+            }, 10000);
+        </script>
+    </body>
+</html>

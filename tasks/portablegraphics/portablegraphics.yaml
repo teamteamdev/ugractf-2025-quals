@@ -1,0 +1,19 @@
+category: forensics
+points: 250
+title: PNG
+author: purplesyringa
+description:
+  ru: |
+    <p>
+      Мы сделали то, что от нас прямо просили не делать, потому что мы не умеем читать. Теперь
+      ничего не работает, и если вы это не исправите, то винить мы в этом будем вас.
+    </p>
+  en: |
+    <p>
+      We did something we were explicitly asked not to do, because we can't read. Now everything
+      doesn't work, and if you don't fix it, we'll blame you.
+    </p>
+generator: ../_scripts/kyzylborda-lib-generator
+secrets:
+  seed: J9SzI5Av4jCqrg1SOxTCw63iZNvJSLms
+  flag: ugra_this_sign_wont_stop_me_because_i_cant_read_[a-z0-9]{24}

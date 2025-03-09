@@ -1,0 +1,57 @@
+category: osint
+points: 300
+title:
+  ru: Сервер с бородой
+  en: Server with a beard
+author: enhydra
+description:
+  ru: |
+    <p>
+      Ходит легенда, что в подвале одного из корпусов одного технологического университета уже очень давно стоит и работает сервер, который все боятся трогать. Поговаривают, он даже ни разу не перезагружался.
+      В качестве доказательства удалось получить системный журнал.
+    </p>
+    <p>
+      Вычислите, где находится этот сервер. Можно даже не очень точно.
+    </p>
+    <p>
+      Примечание: вашей команде доступно только 7 попыток ввода координат.
+    </p>
+    <p>
+      <em>Обновлено 8 марта в 18:33:</em> стоимость увеличена с 200 до 300.
+    </p>
+    <p>
+      <em>Добавлено 9 марта в 00:10:</em> Подсказка: Сервер настолько древний, что в логах отразились следы событий, уникальных для этого региона.
+    </p>
+    <p>
+      <em>Добавлено 9 марта в 19:00:</em> Подсказка: Упомянутые в прошлой подсказке события затронули не только этот компьютер, но и все вычислительные устройства региона, да и не только вычислительные, хотя это смотря как считать.
+    </p>
+  en: |
+    <p>
+      Legend has it that in the basement of a building at a technological university, there is a server that has been running for a very long time and no one dares to touch it. It is said that it has never been rebooted.
+      This is alleged to be proven by a system log.
+    </p>
+    <p>
+      Determine the location of this server. You don’t have to be very precise though.
+    </p>
+    <p>
+      Keep in mind that your team only has 7 attempts to provide the coordinates.
+    </p>
+    <p>
+      <em>Updated on March 8 at 18:33:</em> awarded points changed from 200 to 300.
+    </p>
+    <p>
+      <em>Added on March 9 at 00:10:</em> Hint: The server is so ancient, that the logs contain traces of events unique to this region.
+    </p>
+    <p>
+      <em>Added on March 9 at 19:00:</em> Hint: The events mentioned in the previous hint have affected not only this computer but all computing devices in the region, and not just computing ones, though the exact definition depends on your viewpoint.
+    </p>
+attachments_path: attachments
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: IHwuPi4uLkQuLjZ0WS4uLjgufAowMDBlN2
+  flag: ugra_federation_is_so_federative_[a-z0-9]{12}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Poster</title>
+
+		<link rel="stylesheet" type="text/css" href="/static/fonts.css">
+		<style type="text/css">
+			main {
+				margin: 32px auto;
+				max-width: 650px;
+				font-family: Roboto, sans-serif;
+				font-size: 16px;
+			}
+
+			h1 {
+				font-family: inherit;
+				font-size: 2em;
+				font-weight: normal;
+			}
+
+			h2 a {
+				color: inherit;
+				font-weight: normal;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h1>Статья опубликована</h1>
+
+			<p>
+				Бесплатная версия с пейволлом: <a href="/{{ token }}/{{ id }}/">https://mediumrare.q.2025.ugractf.ru/{{ token }}/{{ id }}/</a>.
+			</p>
+
+			<p>
+				Версия для подписчиков: <a href="/{{ token }}/{{ id }}/?password={{ password }}">https://mediumrare.q.2025.ugractf.ru/{{ token }}/{{ id }}/?password={{ password }}</a>.
+			</p>
+		</main>
+	</body>
+</html>

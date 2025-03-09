@@ -1,0 +1,34 @@
+category: crypto
+points: 250
+title:
+  ru: Коробкошка
+  en: Boxcat
+author: purplesyringa
+description:
+  ru: |
+    <p>
+      Несмотря на то, что кошки все перевернули, на сайт продолжают заливать флаги. Разберитесь, в
+      чем тут дело, и наградите непричастных.
+    </p>
+    <p>
+      <em>Добавлено 9 марта в 00:10:</em> Подсказка: Чтобы получить доступ к флагу, обязательно нужно ввести правильный пароль.
+    </p>
+  en: |
+    <p>
+      Despite the cats' best attempts to shuffle everything around, people aren't uploading cat
+      pictures (there's still flags though, but that's not interesting to us). Find out why
+      nothing's going on and put a start to it.
+    </p>
+    <p>
+      <em>Added on March 9 at 00:10:</em> Hint: To access the flag, you must enter the correct password.
+    </p>
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: SpiDLMJ1i7r+PkToM9Q4XdEQXMOvZsiU
+  rng: "0\\.[1-9]\\d{20}"
+  flag: ugra_send_pics_please_[a-z0-9]{12}

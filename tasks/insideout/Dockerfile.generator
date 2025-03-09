@@ -1,0 +1,15 @@
+FROM docker.io/imachug/kyzylborda_lib
+RUN apk add --no-cache make zig
+
+RUN apk add --no-cache curl ffmpeg && \
+    curl https://upload.wikimedia.org/wikipedia/en/f/f7/RickRoll.png -o /flag.png && \
+    ffmpeg -hide_banner -i /flag.png /flag.bmp && \
+    rm /flag.png && \
+    apk del curl ffmpeg
+
+# Prebuild cache
+COPY src /tmp/src
+RUN cd /tmp/src && cp /flag.bmp . && HOME=/ make -B && mv main.exe / && rm -r /tmp/src /.cache /flag.bmp
+
+WORKDIR /task
+ENTRYPOINT ["kyzylborda-generate", "generator"]

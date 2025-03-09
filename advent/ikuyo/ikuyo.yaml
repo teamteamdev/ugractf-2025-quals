@@ -1,0 +1,23 @@
+category: misc
+points: 1
+title: 行くよ
+author: sylfn
+sort_key: "03/07"
+description:
+  ru: |
+    <p>&mdash; Мам, можно мне юникод?
+    <p>&mdash; У нас уже есть юникод дома.
+    <p>Юникод дома:
+  en: |
+    <p>&mdash; Mom, can we have unicode?
+    <p>&mdash; We already have it at home.
+    <p>Unicode at home:
+urls:
+  - https://ikuyo.{hostname}/
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: app
+  socket: ./app.sock
+  socket_type: http
+flags:
+  - ugra_shift_jis_is_better_than_unicode_dont_you_think_2qh3c3nzppn4iw02y7561rsf

@@ -1,0 +1,18 @@
+category: misc
+points: 1
+title:
+  ru: Вращайте барабан!
+  en: Spin the Wheel!
+sort_key: "02/27"
+author: nsychev
+description:
+  ru: |
+    <p>Теперь за игрой можно наблюдать прямо в режиме реального времени. Чудо, не правда ли?
+    <p>Назовёте флаг целиком?
+  en: |
+    <p>Now you can watch the game in real time. It's very fortunate, isn’t it?
+    <p>Can you call the flag?
+urls:
+  - https://docs.google.com/spreadsheets/d/1Qnu-OppMEIIrz46-XATUv2rVIbXeptx32iDO9y0PsqE/edit
+flags:
+  - ugra_aaaaaautomobile

@@ -1,0 +1,4 @@
+socket: 127.0.0.1:8000
+healthcheck:
+  request: http://127.0.0.1:8000/up
+cpu_rate: 1.0

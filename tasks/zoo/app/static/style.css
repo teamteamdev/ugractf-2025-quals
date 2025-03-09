@@ -1,0 +1,48 @@
+html {
+    background: #e6f2fc;
+}
+
+body {
+    max-width: 1000px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px 5px;
+}
+
+body .main-text img {
+    width: 100%;
+}
+
+h1.logo {
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 60px;
+    text-shadow: #049 5px 10px 5px;
+    font-style: italic;
+    text-align: center;
+}
+
+
+form div label:not(:has(input[type="checkbox"])) {
+    display: inline-block;
+    width: 12em;
+    margin-bottom: 0.3em;
+}
+
+form button {
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    border-radius: 0;
+    border: 1px solid darkgray;
+    font: inherit;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tbody td, table th {
+    border: 1px solid black;
+    padding: 0.2em;
+}

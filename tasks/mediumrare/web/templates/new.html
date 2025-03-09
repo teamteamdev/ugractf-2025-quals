@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>New article</title>
+
+		<link rel="stylesheet" type="text/css" href="/static/fonts.css">
+		<style type="text/css">
+			main {
+				margin: 32px auto;
+				max-width: 650px;
+				font-family: Roboto, sans-serif;
+				font-size: 16px;
+			}
+
+			.title {
+				border: none;
+				font-family: inherit;
+				font-size: 2em;
+				width: 100%;
+				outline: none;
+			}
+
+			.ce-paid-content-delimiter {
+				line-height: 1.6em;
+				width: 100%;
+				text-align: center;
+			}
+
+			.ce-paid-content-delimiter::before {
+				content: "🔒 Продолжение статьи доступно только по платной подписке. Свяжитесь с автором для получения доступа.";
+			}
+
+			.publish {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 64px;
+				height: 64px;
+				border-radius: 50%;
+				box-shadow: 0 2px 4px #e0e0e0;
+				cursor: pointer;
+				color: #ffffff;
+				position: fixed;
+				right: 16px;
+				bottom: 16px;
+				background-color: #2ea0ff;
+			}
+			.publish svg {
+				width: 70%;
+				height: 70%;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<form method="POST" id="form">
+				<input name="title" class="title" placeholder="Заголовок">
+				<div id="editorjs"></div>
+				<input type="hidden" name="free_content">
+				<input type="hidden" name="paid_content">
+			</form>
+		</main>
+
+		<div class="publish" title="Publish"></div>
+
+		<script src="/static/editorjs.min.js"></script>
+		<script type="text/javascript">
+			const icons = window["@codexteam/icons"];
+
+			class PaidContentDelimiter {
+				static get isReadOnlySupported() {
+					return true;
+				}
+				static get contentless() {
+					return true;
+				}
+				constructor({data, config, api}) {
+					this.api = api;
+					this._CSS = {
+						block: this.api.styles.block,
+						wrapper: "ce-paid-content-delimiter"
+					};
+					this._data = {};
+					this._element = this.drawView();
+					this.data = data;
+				}
+				drawView() {
+					const div = document.createElement("div");
+					div.classList.add(this._CSS.wrapper, this._CSS.block);
+					return div;
+				}
+				render() {
+					return this._element;
+				}
+				save(toolsContent) {
+					return {};
+				}
+				static get toolbox() {
+					return {
+						icon: icons.IconHeart,
+						title: "Paid content cut",
+					};
+				}
+			}
+
+			const editor = new EditorJS({
+				tools: {
+					header: Header,
+					list: List,
+					embed: Embed,
+					code: CodeTool,
+					inlineCode: InlineCode,
+					table: Table,
+					marker: Marker,
+					underline: Underline,
+					footnotes: FootnotesTune,
+					paid: PaidContentDelimiter,
+				},
+				placeholder: "Пишите письма...",
+			});
+
+			const publish = document.querySelector(".publish");
+			publish.innerHTML = icons.IconSave;
+			publish.addEventListener("click", async () => {
+				await editor.readOnly.toggle(true);
+
+				let freeContent = "", paidContent = "";
+				let isAfterPaywall = false;
+				for (const block of document.querySelector(".codex-editor__redactor").children) {
+					if (block.querySelector(".ce-paid-content-delimiter")) {
+						isAfterPaywall = true;
+						continue;
+					}
+					if (isAfterPaywall) {
+						paidContent += block.outerHTML;
+					} else {
+						freeContent += block.outerHTML;
+					}
+				}
+
+				const form = document.querySelector("#form");
+				form.elements.free_content.value = freeContent;
+				form.elements.paid_content.value = paidContent;
+				form.submit();
+			});
+		</script>
+	</body>
+</html>

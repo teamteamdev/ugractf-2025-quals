@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sifter</title>
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+
+        body {
+            font-family: monospace;
+            font-size: 16px;
+            background-color: #222;
+            color: #fff;
+            cursor: default;
+            user-select: none;
+
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            margin: 0;
+        }
+
+        section {
+            flex: 1 1 0;
+        }
+
+        .control {
+            margin-left: calc(2ch + 10px);
+            margin-bottom: 16px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .control > * {
+            margin-right: 16px;
+        }
+
+        button {
+            background-color: #fc2;
+            color: #000;
+            font: inherit;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        table {
+            border-spacing: 0;
+        }
+
+        .registers {
+            margin-left: calc(2ch + 10px);
+            margin-bottom: 16px;
+        }
+
+        th {
+            color: #fc2;
+        }
+
+        th.top {
+            padding-bottom: 8px;
+            border-bottom: 1px solid;
+        }
+
+        th.left {
+            padding-right: 8px;
+            border-right: 1px solid;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        .half-hover {
+            background-color: #444;
+        }
+
+        #flag {
+            padding: 3px;
+        }
+
+        #flag span {
+            cursor: pointer;
+            color: #888;
+        }
+
+        #flag span.flag-active {
+            color: #fff;
+        }
+
+        input {
+            border: none;
+            padding: 3px;
+            font: inherit;
+            color: inherit;
+            background-color: transparent;
+            width: 2ch;
+        }
+
+        .current-pc {
+            background-color: #fc2;
+            color: #000;
+        }
+
+        .current-pc-ud {
+            background-color: #f42;
+        }
+
+        .machine {
+            padding: 16px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            border: none;
+            margin: 0;
+            padding: 16px;
+            box-sizing: border-box;
+            background-color: #000;
+            color: #fff;
+            outline: none;
+            font: inherit;
+        }
+    </style>
+</head>
+<body>
+    <section class="machine">
+        <div class="control">
+            <button onclick="step()">Step</button>
+            <button onclick="run()">Run</button>
+            <button onclick="zeroMemory()">Zero memory</button>
+            <div id="machineStatus">Idle</div>
+        </div>
+
+        <table class="registers">
+            <tr>
+                <th class="top">r0</th>
+                <th class="top">r1</th>
+                <th class="top">r2</th>
+                <th class="top">r3</th>
+                <th class="top">pc</th>
+                <th class="top">flag</th>
+            </tr>
+            <tr>
+                <td><input id="r0"></td>
+                <td><input id="r1"></td>
+                <td><input id="r2"></td>
+                <td><input id="r3"></td>
+                <td><input id="pc"></td>
+                <td id="flag"></td>
+            </tr>
+        </table>
+
+        <table id="memTable"></table>
+    </section>
+
+    <section>
+        <textarea readonly id="io"></textarea>
+    </section>
+
+    <script type="text/javascript">
+        let state = {
+            mem: [],
+            reg: [0, 0, 0, 0],
+            zero: false,
+            sign: false,
+            carry: false,
+            overflow: false,
+            pc: 0,
+            input: [],
+            output: [],
+        };
+        for (let i = 0; i < 256; i++) {
+            state.mem.push(0);
+        }
+        let bufferedInput = [];
+        let transactionInProgress = false;
+        let lastCommandWasStep = null;
+        let waitingForInput = false;
+        let hasAuthorized = false;
+
+        {
+            const tr = document.createElement("tr");
+            const th = document.createElement("th");
+            tr.appendChild(th);
+            for (let j = 0; j < 16; j++) {
+                const th = document.createElement("th");
+                th.classList.add("top");
+                th.textContent = `_${j.toString(16)}`;
+                tr.appendChild(th);
+            }
+            memTable.appendChild(tr);
+        }
+
+        for (let i = 0; i < 16; i++) {
+            const tr = document.createElement("tr");
+            const th = document.createElement("th");
+            th.classList.add("left");
+            th.textContent = `${i.toString(16)}_`;
+            tr.appendChild(th);
+            for (let j = 0; j < 16; j++) {
+                const td = document.createElement("td");
+                const input = document.createElement("input");
+                input.addEventListener("mouseenter", () => {
+                    for (let k = 0; k < 16; k++) {
+                        memTable.rows[1 + i].cells[1 + k].classList.add("half-hover");
+                        memTable.rows[1 + k].cells[1 + j].classList.add("half-hover");
+                    }
+                });
+                input.addEventListener("mouseleave", () => {
+                    for (let k = 0; k < 16; k++) {
+                        memTable.rows[1 + i].cells[1 + k].classList.remove("half-hover");
+                        memTable.rows[1 + k].cells[1 + j].classList.remove("half-hover");
+                    }
+                });
+                makeByteInput(input, () => state.mem[i * 16 + j], (n) => state.mem[i * 16 + j] = n);
+                td.appendChild(input);
+                tr.appendChild(td);
+            }
+            memTable.appendChild(tr);
+        }
+
+        makeByteInput(r0, () => state.reg[0], (n) => state.reg[0] = n);
+        makeByteInput(r1, () => state.reg[1], (n) => state.reg[1] = n);
+        makeByteInput(r2, () => state.reg[2], (n) => state.reg[2] = n);
+        makeByteInput(r3, () => state.reg[3], (n) => state.reg[3] = n);
+        makeByteInput(pc, () => state.pc, (n) => {
+            state.pc = n;
+            renderPc();
+        });
+
+        const flagToSpan = {};
+        for (let i = 0; i < 4; i++) {
+            const key = ["zero", "sign", "carry", "overflow"][i];
+            const char = "ZSCO"[i];
+            const span = document.createElement("span");
+            flagToSpan[key] = span;
+            span.textContent = char.toLowerCase();
+            span.addEventListener("click", () => {
+                state[key] = !state[key];
+                span.classList.toggle("flag-active", state[key]);
+                span.textContent = state[key] ? char : char.toLowerCase();
+            });
+            flag.appendChild(span);
+        }
+
+        io.value = "Serial console active\n\n";
+        io.addEventListener("keypress", (e) => {
+            let ch;
+            if (e.key.length === 1 && e.key.charCodeAt(0) < 256) {
+                ch = e.key;
+            } else if (e.key === "Enter") {
+                ch = "\n";
+            } else {
+                return;
+            }
+            io.value += ch;
+            if (transactionInProgress) {
+                bufferedInput.push(ch.charCodeAt(0));
+            } else {
+                state.input.push(ch.charCodeAt(0));
+                if (waitingForInput) {
+                    waitingForInput = false;
+                    repeat();
+                }
+            }
+        });
+
+        function makeByteInput(input, get, set) {
+            input.value = "00";
+            input.setAttribute("maxlength", "2");
+            input.addEventListener("blur", () => {
+                if (/^[0-9a-f]+$/i.test(input.value)) {
+                    let value = parseInt(input.value, 16);
+                    if (0 <= value && value < 256 && value != get()) {
+                        set(value);
+                    }
+                }
+                input.value = hex(get());
+            });
+        }
+
+        function hex(n) {
+            return ("0" + n.toString(16)).slice(-2);
+        }
+
+        function render() {
+            for (let i = 0; i < 16; i++) {
+                for (let j = 0; j < 16; j++) {
+                    memTable.rows[1 + i].cells[1 + j].querySelector("input").value = hex(state.mem[i * 16 + j]);
+                }
+            }
+            r0.value = hex(state.reg[0]);
+            r1.value = hex(state.reg[1]);
+            r2.value = hex(state.reg[2]);
+            r3.value = hex(state.reg[3]);
+            pc.value = hex(state.pc);
+            for (const key of ["zero", "sign", "carry", "overflow"]) {
+                flagToSpan[key].classList.toggle("flag-active", state[key]);
+                flagToSpan[key].textContent = state[key] ? key[0].toUpperCase() : key[0];
+            }
+            renderPc();
+        }
+
+        function renderPc() {
+            const currentPc = document.querySelector(".current-pc");
+            if (currentPc) {
+                currentPc.classList.remove("current-pc");
+                currentPc.classList.remove("current-pc-ud");
+            }
+            const cell = memTable.rows[1 + (state.pc >> 4)].cells[1 + (state.pc & 15)];
+            cell.classList.add("current-pc");
+            cell.classList.toggle("current-pc-ud", machineStatus.textContent === "Undefined instruction");
+        }
+
+        const ws = new WebSocket("/ws");
+
+        ws.addEventListener("open", () => {
+            ws.send(location.href.match(/.*\/([a-z0-9]+)$/)[1]);
+        });
+
+        ws.addEventListener("close", () => {
+            machineStatus.textContent = "Connection lost";
+        });
+
+        ws.addEventListener("message", (e) => {
+            const response = JSON.parse(e.data);
+
+            if ("Ok" in response) {
+                // pass, successful auth
+            } else if ("Err" in response) {
+                machineStatus.textContent = "Invalid token in URL";
+            } else if (Array.isArray(response)) {
+                const [ result, newState ] = response;
+
+                waitingForInput = false;
+                if ("Ok" in result) {
+                    if (hasAuthorized) {
+                        if (lastCommandWasStep) {
+                            machineStatus.textContent = "Idle";
+                        } else {
+                            machineStatus.textContent = "Timed out after 4000 cycles";
+                        }
+                    } else {
+                        hasAuthorized = true;
+                    }
+                } else if ("Err" in result) {
+                    if (result["Err"] === "Undefined") {
+                        machineStatus.textContent = "Undefined instruction";
+                    } else if (result["Err"] === "Halt") {
+                        machineStatus.textContent = "Halted";
+                    } else if (result["Err"] === "InputRequested") {
+                        machineStatus.textContent = "Waiting for serial input";
+                        waitingForInput = true;
+                    }
+                }
+
+                transactionInProgress = false;
+                if (newState.output.length > 0) {
+                    io.value += String.fromCharCode(...newState.output);
+                    newState.output = [];
+                }
+                state = newState;
+                render();
+
+                if (bufferedInput.length > 0 && waitingForInput) {
+                    state.input = bufferedInput;
+                    bufferedInput = [];
+                    waitingForInput = false;
+                    repeat();
+                }
+            }
+        });
+
+        function repeat() {
+            transactionInProgress = true;
+            ws.send(JSON.stringify({
+                single_step: lastCommandWasStep,
+                state,
+            }));
+        }
+
+        function step() {
+            if (transactionInProgress || !hasAuthorized) {
+                return;
+            }
+            lastCommandWasStep = true;
+            repeat();
+        }
+
+        function run() {
+            if (transactionInProgress || !hasAuthorized) {
+                return;
+            }
+            lastCommandWasStep = false;
+            repeat();
+        }
+
+        function zeroMemory() {
+            if (transactionInProgress || !hasAuthorized) {
+                return;
+            }
+            state.mem = [];
+            for (let i = 0; i < 256; i++) {
+                state.mem.push(0);
+            }
+            render();
+        }
+    </script>
+</body>
+</html>

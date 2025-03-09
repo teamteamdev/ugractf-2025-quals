@@ -1,0 +1,13 @@
+category: reverse
+points: 100
+title: portable executable
+author: sylfn
+description:
+  ru: |
+    <p>Сомневаюсь.
+  en: |
+    <p>I doubt it.
+generator: ../_scripts/kyzylborda-lib-generator
+secrets:
+  seed: efqkBLxzVFgBGMDMS1RBhcGl/V/6Yhtqanother
+  flag: ugra_dos_stub_is_useful_[a-z0-9]{24}

@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  web:
+    image: "caddy:2-alpine"
+    user: "${DOCKER_USER}"
+    volumes:
+      - "${KYZYLBORDA_TMPDIR}:/tmp"
+      - ".:/app:ro"
+      - "./Caddyfile:/etc/caddy/Caddyfile:ro"
+networks:
+  default:
+    internal: true

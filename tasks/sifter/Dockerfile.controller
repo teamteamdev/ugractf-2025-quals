@@ -1,0 +1,15 @@
+FROM rust:alpine AS builder
+RUN apk add --no-cache build-base
+WORKDIR /controller
+# RUSTC_BOOTSTRAP=1 is needed for `cast_signed` (will be stable in rust 1.87)
+RUN \
+    --mount=type=bind,source=controller,target=/controller,rw \
+    --mount=type=cache,target=/controller/target,sharing=locked \
+    --mount=type=cache,target=/usr/local/cargo/registry,sharing=locked \
+    RUSTC_BOOTSTRAP=1 cargo build --release && \
+    cp target/release/controller /out
+
+FROM imachug/kyzylborda_lib
+WORKDIR /task
+COPY --from=builder /out /controller
+CMD ["kyzylborda-quarantine", "127.0.0.1:54327", "server_wrapper"]

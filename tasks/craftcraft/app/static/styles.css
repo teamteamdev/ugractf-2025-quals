@@ -1,0 +1,251 @@
+* {
+	box-sizing: border-box;
+}
+
+@font-face {
+	font-family: Minecraft;
+	src: url(/static/fonts/Minecraft.otf) format("opentype");
+}
+
+html {
+	height: 100%;
+	background-color: #303030;
+	overflow: hidden;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	margin: 0;
+	color: #303030;
+	font-family: Minecraft;
+	font-size: 18px;
+	letter-spacing: -1px;
+	user-select: none;
+}
+
+img {
+	image-rendering: pixelated;
+}
+
+.recipe-book-menu, .crafting-menu, .environment-menu, .trial-message {
+	display: flex;
+	flex-direction: column;
+	margin: 0 8px;
+	padding: 16px;
+	border-radius: 4px;
+	border: 4px solid;
+	border-top-color: #f0f0f0;
+	border-left-color: #f0f0f0;
+	border-right-color: #808080;
+	border-bottom-color: #808080;
+	background-color: #d0d0d0;
+}
+
+.crafting-menu {
+	align-items: center;
+}
+
+.recipes {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 414px;
+}
+
+.environment {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 230px;
+}
+
+h2 {
+	font: inherit;
+	margin: 0 0 4px;
+}
+
+.inventory-section, .trash-section {
+	margin-top: 16px;
+}
+
+.crafting-row {
+	display: flex;
+	align-items: center;
+}
+
+.crafting-arrow {
+	margin: 0 16px;
+}
+
+.item-row {
+	display: flex;
+}
+
+.item-cell {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid;
+	border-top-color: #303030;
+	border-left-color: #303030;
+	border-right-color: #f0f0f0;
+	border-bottom-color: #f0f0f0;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	background-color: #b0b0b0;
+	position: relative;
+}
+
+.item-cell:hover::after, .item-cell-virtual::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff30;
+	pointer-events: none;
+}
+
+.crafting-output {
+	width: 52px;
+	height: 52px;
+}
+
+.recipes .item-cell, .environment .item-cell {
+	width: 44px;
+	height: 44px;
+	margin: 1px;
+}
+
+.inventory-bottom {
+	margin-top: 8px;
+}
+
+.item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+}
+
+.item::before {
+	position: absolute;
+	right: -2px;
+	bottom: -3px;
+	color: #f0f0f0;
+	text-shadow: 2px 2px #303030;
+	content: attr(data-amount);
+}
+
+.item-overflowing::before {
+	color: #f0f000;
+}
+
+.item img {
+	max-width: 32px;
+	max-height: 32px;
+}
+
+.trial {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #00000080;
+}
+
+.trial-message a {
+	border: 2px solid;
+	padding: 6px 16px;
+	border-top-color: #e0e0e0;
+	border-left-color: #e0e0e0;
+	border-right-color: #303030;
+	border-bottom-color: #303030;
+	background-color: #a0a0a0;
+	color: #f0f0f0;
+	text-shadow: 2px 2px #303030;
+}
+
+.trial-message a:hover {
+	color: #f0f000;
+	background-color: #9894a0;
+}
+
+.trial-message a:active {
+	border-top-color: #303030;
+	border-left-color: #303030;
+	border-right-color: #e0e0e0;
+	border-bottom-color: #e0e0e0;
+}
+
+.advancements {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	position: absolute;
+	top: 16px;
+	right: 16px;
+}
+
+.advancement {
+	position: relative;
+	left: calc(100% + 16px);
+	transition: left 0.5s cubic-bezier(0.510, 1.180, 0.545, 1.310);
+	display: flex;
+	align-items: center;
+	margin-bottom: 16px;
+	padding: 6px 16px;
+	border: 3px solid #606060;
+	border-radius: 8px;
+	background-color: #202020;
+}
+
+.advancement-visible {
+	left: 0;
+}
+
+.advancement-icon {
+	max-width: 32px;
+	max-height: 32px;
+	margin-right: 12px;
+}
+
+.advancement-header {
+	color: #f0f000;
+}
+
+.advancement-text {
+	color: #f0f0f0;
+}
+
+.tooltip {
+	position: absolute;
+	text-wrap: nowrap;
+	background-color: #402070b0;
+	border: 2px solid #201038;
+	padding: 6px 8px;
+	border-radius: 4px;
+	color: #f0f0f0;
+}
+
+.cursor {
+	position: absolute;
+	pointer-events: none;
+}
+
+.cursor-slot {
+	position: absolute;
+	left: -16px;
+	top: -16px;
+}

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+case $RequestType in
+    HEAD|GET)
+        reply 410 </dev/null
+        ;;
+    POST)
+        [[ "${RequestHeaders[User-Agent]}" != "Cat/1.1 Meow/2.10 Kernel/7.0" ]] && reply 405 </dev/null
+        [[ "${RequestHeaders[X-Meow]}" != "mrrrp" ]] && reply 405 </dev/null
+        reply 200 <<<"$KYZYLBORDA_SECRET_flag"
+        ;;
+    *) yeet 501 ;;
+esac

@@ -1,0 +1,4 @@
+FROM imachug/kyzylborda_lib
+WORKDIR /task
+RUN apk add --no-cache font-liberation && pip3 install pillow
+ENTRYPOINT ["kyzylborda-generate", "generator"]

@@ -1,0 +1,20 @@
+category: web
+points: 150
+title:
+  ru: Зоопарк
+  en: Zoo
+author: rozetkinrobot
+description:
+  ru: |
+    <p>А вы когда-нибудь видели живых гоферов? Только сегодня все билеты в наш зоопарк по 100 рублей!
+  en: |
+    <p>Have you ever seen gophers in person? Today all tickets to our zoo are 100 rubles only!
+generator: ../_scripts/kyzylborda-lib-generator
+daemon:
+  exec: ../_scripts/kyzylborda-lib-quarantine-daemon Dockerfile.controller app
+  cwd: .
+  socket: ./app.sock
+  socket_type: http
+secrets:
+  seed: OoHEaGVmXt1wCX2O
+  flag: ugra_gophers_are_so_smart_theyre_building_their_own_integers_[a-z0-9]{12}

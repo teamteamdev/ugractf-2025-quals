@@ -1,0 +1,3 @@
+FROM docker.io/imachug/kyzylborda_lib
+WORKDIR /task
+ENTRYPOINT ["kyzylborda-generate", "generator"]

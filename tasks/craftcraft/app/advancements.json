@@ -1,0 +1,102 @@
+[
+    {
+        "title": "Minecraft",
+        "icon": "dirt_path",
+        "condition": "planks"
+    },
+    {
+        "title": "Stone Age",
+        "icon": "cobblestone",
+        "condition": "cobblestone"
+    },
+    {
+        "title": "Getting an Upgrade",
+        "icon": "stone_pickaxe",
+        "condition": "stone_pickaxe"
+    },
+    {
+        "title": "Acquire Hardware",
+        "icon": "iron_ingot",
+        "condition": "iron_ingot"
+    },
+    {
+        "title": "Getting an Upgrade",
+        "icon": "iron_pickaxe",
+        "condition": "iron_pickaxe"
+    },
+    {
+        "title": "Ice Bucket Challenge",
+        "icon": "obsidian",
+        "condition": "obsidian"
+    },
+    {
+        "title": "Diamonds!",
+        "icon": "diamond",
+        "condition": "diamond"
+    },
+    {
+        "title": "We Need to Go Deeper",
+        "icon": "flint_and_steel",
+        "condition": "nether_portal"
+    },
+    {
+        "title": "Enchanter",
+        "icon": "enchanted_book",
+        "condition": "enchanted_book"
+    },
+    {
+        "title": "Eye Spy",
+        "icon": "eye_of_ender",
+        "condition": "portal_frame"
+    },
+    {
+        "title": "The End",
+        "icon": "portal_frame_with_eye",
+        "condition": "dragon"
+    },
+    {
+        "title": "{flag}",
+        "icon": "dragon",
+        "condition": "dragon_egg"
+    },
+    {
+        "title": "Those Were the Days",
+        "icon": "gilded_blackstone",
+        "condition": "pigstep"
+    },
+    {
+        "title": "A Terrible Fortress",
+        "icon": "nether_bricks",
+        "condition": "blaze"
+    },
+    {
+        "title": "Oh Shiny",
+        "icon": "gold_ingot",
+        "condition": ["ender_pearl", "string"]
+    },
+    {
+        "title": "Into Fire",
+        "icon": "blaze_rod",
+        "condition": "blaze_rod"
+    },
+    {
+        "title": "Adventure",
+        "icon": "map",
+        "condition": "diamond_sword"
+    },
+    {
+        "title": "Monster Hunter",
+        "icon": "diamond_sword",
+        "condition": ["redstone_dust", "potato"]
+    },
+    {
+        "title": "Very Very Frightening",
+        "icon": "lightning_rod",
+        "condition": "witch"
+    },
+    {
+        "title": "A Seedy Place",
+        "icon": "wheat",
+        "condition": "wheat"
+    }
+]

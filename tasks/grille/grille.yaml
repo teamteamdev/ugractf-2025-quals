@@ -1,0 +1,17 @@
+category: crypto
+points: 100
+title:
+  ru: Решётка
+  en: Grille
+author: nsychev
+description:
+  ru: |-
+    <p>Нам нужна была крипта за 50, но у автора аллергия на квадратные решётки.
+    <p><img src="static/triangle.svg" style="max-width: 80%;" />
+  en: |-
+    <p>We needed an easy crypto challenge, but the author is allergic to square grilles.
+    <p><img src="static/triangle.svg" style="max-width: 80%;" />
+generator: ../_scripts/kyzylborda-lib-generator
+secrets:
+  seed: ib2ZeAoBjkR3tYfcnNyLLaJCBmpNfSKj
+  flag: ugra_score_[b-fh-qstv-z]{3}r[b-fh-qstv-z]{3}

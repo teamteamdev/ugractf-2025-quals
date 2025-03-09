@@ -1,0 +1,24 @@
+category: misc
+points: 1
+title:
+  ru: Брайль
+  en: Braille
+sort_key: "02/26"
+author: purplesyringa
+description:
+  ru: |
+    <p>В 21 веке без доступности никуда, но как назло, у всех в нашем штате идеальное зрение, так
+    что пришлось следовать советам нейронки. Вот теперь в решении тасок у всех будут одинаковые
+    возможности!
+  en: |
+    <p>Accessibility is important, but alas -- everyone in our team has excellent eyesight, so we
+    had to rely on advice from AI. Now everyone will have a chance to solve our tasks!
+urls:
+  - https://dots.{hostname}/
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: app
+  socket: ./app.sock
+  socket_type: http
+flags:
+  - ugra_braille_for_the_21st_century_a9ffhclfo7x5

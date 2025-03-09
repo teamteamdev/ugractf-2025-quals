@@ -1,0 +1,8 @@
+FROM imachug/kyzylborda_lib
+RUN \
+	apk add --no-cache so:libgobject-2.0.so.0 so:libpango-1.0.so.0 so:libharfbuzz.so.0 so:libharfbuzz-subset.so.0 so:libfontconfig.so.1 so:libpangoft2-1.0.so.0 msttcorefonts-installer fontconfig && \
+    update-ms-fonts && \
+    fc-cache -f	&& \
+    pip install weasyprint
+WORKDIR /task
+ENTRYPOINT ["kyzylborda-generate", "generator"]

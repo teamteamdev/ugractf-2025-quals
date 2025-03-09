@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jetlagged: Location Check-in for {{ token }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #003366;
+            --color-secondary: #0066cc;
+            --color-accent: #ff6b00;
+            --color-light: #ffffff;
+            --color-gray: #f4f7fa;
+            --color-text: #2c3e50;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--color-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--color-text);
+        }
+
+        .container {
+            background: var(--color-light);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px var(--shadow-color);
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: 12px 12px 0 0;
+        }
+
+        h1 {
+            color: var(--color-primary);
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h1::before {
+            content: '✈️';
+            font-size: 1.5rem;
+        }
+
+        .coordinate-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .coordinate-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-primary);
+        }
+
+        input {
+            padding: 0.875rem;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: var(--color-light);
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        button {
+            padding: 1rem;
+            font-size: 1rem;
+            background: var(--color-secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background: var(--color-primary);
+            transform: translateY(-1px);
+        }
+
+        button::after {
+            content: '→';
+            margin-left: 0.5rem;
+        }
+
+        .attempts-circles {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            background: var(--color-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px dashed var(--color-secondary);
+        }
+
+        .attempts-display {
+            text-align: center;
+        }
+
+        .attempts-label {
+            font-size: 0.875rem;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .attempts-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .flight-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            font-family: 'Inter', monospace;
+            background: var(--color-light);
+            padding: 0.25rem 1rem;
+            border-radius: 6px;
+            border: 2px solid var(--color-secondary);
+            letter-spacing: 1px;
+        }
+
+        .total-attempts {
+            color: var(--color-text);
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .warning-message {
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #fff8f0;
+            border: 1px solid var(--color-accent);
+            color: #666;
+        }
+
+        .warning-message p {
+            margin: 0.5em 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-message p::before {
+            content: '⚠️';
+            font-size: 1rem;
+        }
+
+        .no-attempts {
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            padding: 2rem;
+            text-align: center;
+            background: var(--color-gray);
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .result-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--color-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .boarding-pass {
+            background: var(--color-light);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .boarding-pass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+        }
+
+        .boarding-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--color-secondary);
+        }
+
+        .airline-logo {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .boarding-title {
+            font-size: 0.875rem;
+            color: var(--color-text);
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .boarding-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .qr-section {
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            background: var(--color-gray);
+            border-radius: 8px;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+        }
+
+        .flag-section {
+            text-align: center;
+            padding: 1rem;
+            background: var(--color-gray);
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1rem;
+            color: var(--color-primary);
+            word-break: break-all;
+        }
+
+        .boarding-footer {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--color-secondary);
+            font-size: 0.875rem;
+            color: var(--color-text);
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        .attribution {
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .flag {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--color-gray);
+            border-radius: 8px;
+            font-size: 1.125rem;
+            color: var(--color-primary);
+            font-weight: 500;
+            border: 2px solid var(--color-secondary);
+        }
+
+        @media (max-width: 480px) {
+            .coordinate-inputs {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            .boarding-pass {
+                padding: 1.5rem;
+            }
+        }
+
+        .dist {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    {% if flag %}
+        <div class="result-container">
+            <div class="boarding-pass">
+                <div class="boarding-header">
+                    <div class="airline-logo">
+                        ✈️ Boarding Pass
+                    </div>
+                    <div class="boarding-title">
+                        BOARDING PASS
+                    </div>
+                </div>
+                <div class="boarding-content">
+                    <p>Boarding pass for {{ token }} (SEQ/{{ max_attempts - attempts }}):</p>
+                    {% if qr_code %}
+                        <div class="qr-section">
+                            <img class="qr-code" src="data:image/png;base64,{{ qr_code }}" alt="Flag QR Code">
+                        </div>
+                    {% endif %}
+                    <p>Download is not available.</p>
+                </div>
+                <div class="boarding-footer">
+                    Thank you for checking in <em>properly</em>!
+                </div>
+            </div>
+        </div>
+    {% elif attempts > 0 %}
+        <div class="container">
+            <h1>Location Check-in</h1>
+            <form action="post" method="post" class="coordinate-form">
+                <div class="coordinate-inputs">
+                    <div class="input-group">
+                        <label for="lat">Latitude</label>
+                        <input type="text" id="lat" name="lat" placeholder="-11.223344" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="lon">Longitude</label>
+                        <input type="text" id="lon" name="lon" placeholder="55.667788" required>
+                    </div>
+                </div>
+                <button type="submit">Verify Location</button>
+            </form>
+            <div class="attempts-circles">
+                <div class="attempts-display">
+                    <div class="attempts-label">Remaining Check-in Attempts</div>
+                    <div class="attempts-number">
+                        <span class="flight-number">{{ attempts }}</span>
+                        <span class="total-attempts">of {{ max_attempts }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="warning-message">
+                <p>Location accuracy within <strong class="dist">10 m</strong> is required for successful check-in.</p>
+                <p>Each verification attempt is final. Using all attempts without success will void this check-in.</p>
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="no-attempts">
+                Sorry, but for you, check-in is closed (no more attempts available).s
+            </div>
+        </div>
+    {% endif %}
+</body>
+</html>

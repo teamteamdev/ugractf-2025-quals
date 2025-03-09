@@ -1,0 +1,17 @@
+category: ppc
+points: 150
+title:
+  ru: Постановление
+  en: The Resolution
+author: nsychev
+description:
+  ru: |-
+    <p>Из Департамента опять патч прислали. Да, опять не плейнтекстом. Они по-другому не умеют, что с них взять? Посмотришь на досуге?
+    <p><em>Добавлено 9 марта в 16:15:</em> Комиссия по верификации фиксаций сообщила, что в пунктах, содержащих фразу «непосредственно после слов» в номере строки ошибка на единицу. Она исправляется однозначным образом. Эксплуатантам рекомендовано быть внимательнее при применении изменений.
+  en: |-
+    <p>These clerks have just sent one more patch. Yes, it's not a plaintext again. They can’t do it right way. Could you take a look?
+    <p><em>Added on March 9 at 16:15:</em> The patch verification committee found out that in paragraphs containing phrase “непосредственно после слов” the is a off-by-one mistake in the line number. It can be resolved unambiguously. Operators are advised to carefully apply these changes.
+generator: ../_scripts/kyzylborda-lib-generator
+secrets:
+  seed: FA9OkztvDQ6rKUugNNntPIH8G1k93aIl
+  flag: ugra_please_burn_that_patch_in_the_darkest_pits_of_hell_[A-Z0-9]{24}

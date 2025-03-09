@@ -1,0 +1,25 @@
+category: osint
+points: 1
+title:
+  ru: Огни погони в городе
+  en: City Race Lights
+sort_key: "02/28"
+author: nsychev
+description:
+  ru: |
+    <p>В полицейском архиве всё перепутали! Осталось только видео, но&nbsp;место съёмки неизвестно. Найдите местоположение машины на&nbsp;моменте <strong>0:02</strong> с&nbsp;точностью до&nbsp;50&nbsp;метров.
+    <p>По&nbsp;обеим ссылкам загружен один и&nbsp;тот&nbsp;же видеоролик. Проверяющая система не&nbsp;содержит известных авторам уязвимостей — не&nbsp;пытайтесь её взломать.
+  en: |
+    <p>The police archive is messed up! Only this video is left, but&nbsp;the&nbsp;location is unknown. Find the&nbsp;location of&nbsp;the&nbsp;car at <strong>0:02</strong> with an&nbsp;accuracy of&nbsp;50&nbsp;meters.
+    <p>Both links are to the same video. There are no intended vulnerabilities in the checking system, don’t try searching for them.
+urls:
+  - https://vkvideo.ru/video-161697856_456239017?list=ln-Mks9VaCGTOvfzxsk2m&t=2s
+  - https://youtu.be/j0m2BBkO-wE?t=2s
+  - https://racelights.{hostname}/
+flags:
+  - ugra_ingen_ko_pa_isen_xunhq9m3ctts
+daemon:
+  exec: kyzylborda-docker-compose-daemon
+  cwd: app
+  socket: ./app.sock
+  socket_type: http

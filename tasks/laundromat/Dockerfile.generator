@@ -1,0 +1,28 @@
+FROM rust:slim AS builder
+RUN \
+	apt-get update && \
+	apt-get install -y \
+		build-essential \
+		curl \
+		libayatana-appindicator3-dev \
+		librsvg2-dev \
+		libssl-dev \
+		libwebkit2gtk-4.1-dev \
+		libxdo-dev \
+		zip && \
+	curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | sh && \
+	cargo binstall --no-confirm dioxus-cli
+WORKDIR /app/laundromat-client
+RUN \
+	--mount=type=bind,source=laundromat,target=/app,rw \
+	--mount=type=cache,target=/target,sharing=locked \
+	--mount=type=cache,target=/usr/local/cargo/registry,sharing=locked \
+	ln -sf /target /app/target && \
+	./build && \
+	cp /target/dx/laundromat-client/release/linux/app/laundromat-client /laundromat
+
+FROM imachug/kyzylborda_lib
+RUN apk add --no-cache upx
+WORKDIR /task
+COPY --from=builder /laundromat /laundromat
+ENTRYPOINT ["kyzylborda-generate", "generator"]

@@ -1,0 +1,8 @@
+[application]
+name = "Money Laundering"
+default_platform = "desktop"
+
+[bundle]
+icon = ["icon.png"]
+identifier = "tf.ttc.laundromat"
+publisher = "Ugra CTF"
