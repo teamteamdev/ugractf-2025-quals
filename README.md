@@ -20,7 +20,7 @@
 ## Таски
 
 [Вещает, видимо](tasks/apparentcast/) (enhydra, forensics 150)  
-[Сервер с бородой](tasks/beardbox/) (enhydra, osint 200)  
+[Сервер с бородой](tasks/beardbox/) (enhydra, osint 300)  
 [Коробкошка](tasks/boxcat/) (purplesyringa, crypto 250)  
 [Кошкоробка](tasks/catbox/) (purplesyringa, misc 100)  
 [CraftCraft](tasks/craftcraft/) (purplesyringa, ppc 300)  
@@ -38,7 +38,7 @@
 [Санэпидемстанция](tasks/pestcontrol/) (baksist, web 100)  
 [portable executable](tasks/portableexecutable/) (sylfn, reverse 100)  
 [PNG](tasks/portablegraphics/) (purplesyringa, forensics 250)  
-[SecuSafe](tasks/secusafe/) (rozetkinrobot, reverse 250)  
+[SecuSafe](tasks/secusafe/) (rozetkinrobot, reverse 300)  
 [Просеиватель](tasks/sifter/) (sylfn, reverse 400)  
 [тишина](tasks/silence/) (sylfn, ppc 200)  
 [Летнее чтение](tasks/summerreading/) (purplesyringa, web 100)  
