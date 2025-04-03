@@ -1,6 +1,6 @@
 # Ugra CTF Quals 2025
 
-8–9 марта 2025 | [Сайт](https://2025.ugractf.ru/)
+8–9 марта 2025 | [Сайт](https://2025.ugractf.ru/) | [Результаты](SCOREBOARD.md)
 
 ## Разогревочные таски
 
